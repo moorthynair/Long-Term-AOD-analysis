@@ -1,0 +1,56 @@
+
+var map_m = function(i) {
+  i = ee.Number(i);
+  //Input the month sequence
+  var months = ee.List.sequence(1, 12);
+  var filtered_col = months.map(function(j) {
+    j=ee.Number(j);
+    var filtered = modis.filter(ee.Filter.calendarRange(j, j, 'month'))
+                        .filter(ee.Filter.calendarRange(i, i, 'year')).select('Optical_Depth_055')
+                        .filterBounds(aoi).reduce(ee.Reducer.mean()).multiply(0.001);
+    return filtered;
+  });
+  return filtered_col;
+};
+
+//Input the years for which image needs to be collected
+var years = ee.List.sequence(2001, 2004);
+var modis_list2 = years.map(map_m).flatten();
+print(modis_list2);
+var collect = ee.ImageCollection.fromImages(modis_list2);
+
+//Input the batch library to save individual images from the collection
+var batch = require('users/fitoprincipe/geetools:batch');
+batch.Download.ImageCollection.toDrive(collect, 
+                'monthly_aod', 
+                {scale: 1000, 
+                maxPixels:5000000000,
+                region: reg, 
+                type: 'float'});
+
+// Automate the run tasks. Not run with below code.
+// Run with above codes. Once RUN button is visible in tasks
+// Press F12 and paste below mentioned code in the console
+// function runTask() {
+
+//     var tasklist = document.getElementsByClassName('task local type-EXPORT_IMAGE awaiting-user-config');
+    
+//     if (tasklist.length == 0)
+//         return;
+    
+//     tasklist[0].getElementsByClassName('run-button')[0].click();
+    
+//     setTimeout(function() {
+      
+//       var ok = document.getElementsByClassName('goog-buttonset-default goog-buttonset-action');
+      
+//       if (ok.length == 0)
+//         return;
+      
+//       ok[0].click();
+      
+//       setTimeout(runTask, 2000);
+      
+//     }, 2000);
+// }
+// runTask()
