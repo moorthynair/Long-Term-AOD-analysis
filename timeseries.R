@@ -1,3 +1,5 @@
+##Time series forecasting using Auto Regressive Integrate Moving Average technique (ARIMA)
+
 library(caret)
 library(readxl)
 library(forecast)
@@ -371,5 +373,3 @@ state$dist = str_to_title(state$dist)
 state = state %>% select(-c(1,2))
 
 write.table(state, file = 'G:/My on going proj/Satellite-Data-Analysis/Processed_raster/Raster_facets_savgol_updated/mk_openair_seasonal.csv', row.names = F, sep=",")
-
-library(modifiedmk)
