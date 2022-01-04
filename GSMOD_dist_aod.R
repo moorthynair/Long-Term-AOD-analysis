@@ -1,3 +1,5 @@
+#To understand the monthly variation in AOD over various Global Human Settlements in the districts for the State. 
+
 fil_stack = list.files(pattern='*.xlsx')
 
 fil_stack =lapply(fil_stack, function (i){
