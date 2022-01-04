@@ -16,7 +16,7 @@ _Essential libraries/datasets for performing the analysis_
 10. R IDE
 11. tidyverse, dplyr for basic data cleaning
 12. Forecast library
-13. Openair library for Mann-Kendall anlysis. 
+13. Openair library for Mann-Kendall and HYSPLIT analysis. 
 14. factoextra for clustering analysis
 15. ggplot2 for visualisation
 
