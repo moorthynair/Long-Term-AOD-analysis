@@ -1,3 +1,5 @@
+##To anlyse the change in Global Human Settlement and AOD for the year 2015 over 2001
+
 fil_stack = list.files(pattern='*.xlsx')
 
 fil_stack =lapply(fil_stack, function (i){
@@ -30,7 +32,7 @@ write.table(comb_final %>% filter(category=='No change'), file='comphrensive_dis
 k =comb_final %>%  filter(category=='No change' ) %>% group_by(dist) %>% filter(category=='UC')
 
 dist_name =levels(comb_final$dist)
-dist_name=c("BANKA")
+dist_name=c("BANKA","JAMUI","PATNA") ##Enter the districts in the state
 lapply(dist_name, function(i){
   bihar_final=comb_final %>% filter(dist==i)
  ggplot(data=bihar_final, aes(x=`GHSL-2015`, y=percent))+geom_bar(stat='identity',fill="steelblue4", col='black', alpha=0.8)+ theme_bw()+ 
