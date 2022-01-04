@@ -1,3 +1,5 @@
+##To analyse the change in Global Human Settlement and AOD in the state for the year 2015 over 2001
+
 library(readxl)
 bihar <- read_excel("Bihar.xlsx")
 View(bihar)
