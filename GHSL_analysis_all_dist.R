@@ -1,4 +1,4 @@
-##To anlyse the change in Global Human Settlement and AOD for the year 2015 over 2001
+##To anlyse the change in Global Human Settlement and AOD for entire districts in the state for the year 2015 over 2001
 
 fil_stack = list.files(pattern='*.xlsx')
 
